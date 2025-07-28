@@ -43,9 +43,9 @@
     }
 
     input, select, button {
-      background-color: rgba(255, 255, 255, 0.4); /* Transparent inputs */
+      background-color: rgba(255, 255, 255, 0.4);
       border: 1px solid #ccc;
-      color: #000;
+      color: black;
       display: block;
       width: 100%;
       max-width: 100%;
@@ -57,10 +57,14 @@
       margin-bottom: 15px;
     }
 
-        input::placeholder {
-  color: black;
-}
+    /* Placeholder text color */
+    input::placeholder {
+      color: black;
+    }
 
+    select option[disabled] {
+      color: #555;
+    }
 
     button {
       background-color: #333;
@@ -85,9 +89,31 @@
     }
 
     h2 {
-    color: white;
-    text-shadow: 1px 1px 4px black;
-  }
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    /* Responsive styles for small screens */
+    @media (max-width: 480px) {
+      .form-container {
+        width: 80%;
+        padding: 20px;
+        transform: translate(-50%, -55%);
+      }
+
+      input, select, button {
+        height: 40px;
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      #thankYouMessage {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
