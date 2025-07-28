@@ -127,23 +127,35 @@
 <body>
   <div class="form-container">
     <h2>Details</h2>
-<form action="https://formspree.io/f/mldlngle" method="POST">
-  <input type="hidden" name="_captcha" value="false" />
-  <input type="email" name="email" placeholder="Your Email" required />
-  <select name="attendance" required>
-    <option value="" disabled selected hidden>Will you attend?</option>
-    <option value="yes">Yes</option>
-    <option value="no">No</option>
-  </select>
-  <button type="submit">Submit</button>
-</form>
+    <form id="rsvpForm" action="https://formspree.io/f/mldlngle" method="POST">
+      <input type="email" id="email" name="email" placeholder="Your Email" required />
+
+      <select id="attendance" name="attendance" required>
+        <option value="" selected disabled hidden>Will you attend?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <div id="additionalDetails" class="hidden">
+        <input type="text" name="numberOfGuests" placeholder="Number of Guests" />
+        <input type="text" name="guestNames" placeholder="Names of the Guests" />
+        <button type="submit">Submit</button>
+      </div>
+
+      <div id="thankYouMessage" class="hidden">
+        Thank you for letting us know.
+      </div>
+    </form>
   </div>
 
-<script>
-    const attendanceSelect = document.getElementById('attendance');
+  <script>
+    const form = document.getElementById('rsvpForm');
     const emailInput = document.getElementById('email');
+    const attendanceSelect = document.getElementById('attendance');
     const additionalDetails = document.getElementById('additionalDetails');
     const thankYouMessage = document.getElementById('thankYouMessage');
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw9tth5xOrrsTuvD03tIPavyFH4dmJjncYHv3k9GGKk_gBUADcJpEWiAe9bUbxe35c9/exec";
 
     attendanceSelect.addEventListener('change', function () {
       const selected = this.value;
@@ -157,8 +169,38 @@
         attendanceSelect.classList.add('hidden');
         additionalDetails.classList.add('hidden');
         thankYouMessage.classList.remove('hidden');
+        submitToSheet({ 
+          email: emailInput.value, 
+          attendance: "no", 
+          numberOfGuests: "", 
+          guestNames: "" 
+        });
       }
     });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = {
+        email: emailInput.value,
+        attendance: attendanceSelect.value,
+        numberOfGuests: form.numberOfGuests?.value || "",
+        guestNames: form.guestNames?.value || ""
+      };
+
+      submitToSheet(formData);
+      form.innerHTML = '<p style="color:white; text-shadow:1px 1px 4px black;">Thanks for your RSVP!</p>';
+    });
+
+    function submitToSheet(data) {
+      fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(error => console.error('Error!', error.message));
+    }
   </script>
 </body>
 </html>
