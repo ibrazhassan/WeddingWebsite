@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSVP</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      font-family: Arial, sans-serif;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    body {
+      background-image: url('background.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      background-color: black;
+    }
+
+    .form-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(141, 141, 141, 0.3);
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input, select, button {
+      background-color: rgba(255, 255, 255, 0.4); /* Transparent inputs */
+      border: 1px solid #ccc;
+      color: #000;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: 45px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #thankYouMessage {
+      font-size: 18px;
+      margin-top: 20px;
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    h2 {
+    color: white;
+    text-shadow: 1px 1px 4px black;
+  }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Details</h2>
+    <form id="rsvpForm">
+      <input type="email" id="email" placeholder="Your Email" required />
+
+      <select id="attendance" required>
+        <option value="" selected disabled hidden>Will you attend?</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <div id="additionalDetails" class="hidden">
+        <input type="text" placeholder="Number of Guests" required />
+        <input type="text" placeholder="Names of the Guests" required />
+        <button type="submit">Submit</button>
+      </div>
+
+      <div id="thankYouMessage" class="hidden">
+        Thank you for letting us know.
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const attendanceSelect = document.getElementById('attendance');
+    const emailInput = document.getElementById('email');
+    const additionalDetails = document.getElementById('additionalDetails');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    attendanceSelect.addEventListener('change', function () {
+      const selected = this.value;
+
+      if (selected === "yes") {
+        emailInput.classList.add('hidden');
+        attendanceSelect.classList.add('hidden');
+        additionalDetails.classList.remove('hidden');
+        thankYouMessage.classList.add('hidden');
+      } else if (selected === "no") {
+        emailInput.classList.add('hidden');
+        attendanceSelect.classList.add('hidden');
+        additionalDetails.classList.add('hidden');
+        thankYouMessage.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

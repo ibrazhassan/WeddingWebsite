@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSVP</title>
+  <style>
+    /* Full screen background image */
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('your-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      opacity: 0;
+      transition: opacity 1.5s ease-in;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.3); /* translucent panel */
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 5px black;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    #additional-questions {
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+      padding: 12px 24px;
+      margin-top: 10px;
+      background-color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>You're Invited!</h1>
+
+    <!-- Attendance Dropdown -->
+    <select id="attendance" required>
+      <option value="" disabled selected hidden>Will you attend?</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <!-- Additional Questions -->
+    <div id="additional-questions">
+      <input type="text" placeholder="Number of Guests" required />
+      <input type="text" placeholder="Guest Names" />
+      <textarea placeholder="Email Address" rows="1"></textarea>
+      <button type="submit">Submit RSVP</button>
+    </div>
+  </div>
+
+  <script>
+    // Fade in on load
+    window.onload = () => {
+      document.body.classList.add("fade-in");
+    };
+
+    // Show additional questions after attendance is selected
+    const attendanceSelect = document.getElementById('attendance');
+    attendanceSelect.addEventListener('change', function () {
+      const value = this.value;
+      if (value === 'yes' || value === 'no') {
+        this.style.display = 'none';
+        document.getElementById('additional-questions').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
