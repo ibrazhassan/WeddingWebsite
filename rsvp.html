@@ -21,6 +21,17 @@
       }
     }
 
+    /* Fade out animation */
+    .fade-out {
+      animation: fadeOut 1s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
+    }
+
     body {
       background-image: url('background.jpg');
       background-repeat: no-repeat;
@@ -57,7 +68,6 @@
       margin-bottom: 15px;
     }
 
-    /* Placeholder text color */
     input::placeholder {
       color: black;
     }
@@ -93,7 +103,6 @@
       text-shadow: 1px 1px 4px black;
     }
 
-    /* Responsive styles for small screens */
     @media (max-width: 480px) {
       .form-container {
         width: 80%;
@@ -145,6 +154,7 @@
     const emailInput = document.getElementById('email');
     const additionalDetails = document.getElementById('additionalDetails');
     const thankYouMessage = document.getElementById('thankYouMessage');
+    const form = document.getElementById('rsvpForm');
 
     attendanceSelect.addEventListener('change', function () {
       const selected = this.value;
@@ -160,6 +170,18 @@
         additionalDetails.classList.add('hidden');
         thankYouMessage.classList.remove('hidden');
       }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Trigger fade out
+      document.body.classList.add('fade-out');
+
+      // Redirect after fade
+      setTimeout(() => {
+        window.location.href = 'final.html';
+      }, 1000);
     });
   </script>
 </body>
