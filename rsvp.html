@@ -21,7 +21,6 @@
       }
     }
 
-    /* Fade out animation */
     .fade-out {
       animation: fadeOut 1s ease forwards;
     }
@@ -128,37 +127,26 @@
 <body>
   <div class="form-container">
     <h2>Details</h2>
-    <form id="rsvpForm">
-      <input type="email" id="email" placeholder="Your Email" required />
-
-      <select id="attendance" required>
-        <option value="" selected disabled hidden>Will you attend?</option>
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-      </select>
-
-      <div id="additionalDetails" class="hidden">
-        <input type="text" placeholder="Number of Guests" required />
-        <input type="text" placeholder="Names of the Guests" required />
-        <button type="submit">Submit</button>
-      </div>
-
-      <div id="thankYouMessage" class="hidden">
-        Thank you for letting us know.
-      </div>
-    </form>
+<form action="https://formspree.io/f/mldlngle" method="POST">
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <select name="attendance" required>
+    <option value="" disabled selected hidden>Will you attend?</option>
+    <option value="yes">Yes</option>
+    <option value="no">No</option>
+  </select>
+  <button type="submit">Submit</button>
+</form>
   </div>
 
-  <script>
+<script>
     const attendanceSelect = document.getElementById('attendance');
     const emailInput = document.getElementById('email');
     const additionalDetails = document.getElementById('additionalDetails');
     const thankYouMessage = document.getElementById('thankYouMessage');
-    const form = document.getElementById('rsvpForm');
 
     attendanceSelect.addEventListener('change', function () {
       const selected = this.value;
-
       if (selected === "yes") {
         emailInput.classList.add('hidden');
         attendanceSelect.classList.add('hidden');
@@ -170,18 +158,6 @@
         additionalDetails.classList.add('hidden');
         thankYouMessage.classList.remove('hidden');
       }
-    });
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Trigger fade out
-      document.body.classList.add('fade-out');
-
-      // Redirect after fade
-      setTimeout(() => {
-        window.location.href = 'final.html';
-      }, 1000);
     });
   </script>
 </body>
