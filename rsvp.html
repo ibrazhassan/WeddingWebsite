@@ -401,31 +401,28 @@
   </script>
 
   <script>
-  const BACKEND_URL = 'https://backend-wedding-wkpt.onrender.com';
+  const BACKEND_URL = 'https://backend-wedding-1-wzio.onrender.com';
 
-  // Listen to all inputs inside the form
-  document.querySelectorAll('#rsvpForm input, #rsvpForm select').forEach((el) => {
-    el.addEventListener('input', async (event) => {
-      const fieldName = event.target.placeholder || event.target.id;
-      const value = event.target.value;
+document.querySelectorAll('#rsvpForm input, #rsvpForm select').forEach((el) => {
+  el.addEventListener('input', async (event) => {
+    const fieldName = event.target.placeholder || event.target.id;
+    const value = event.target.value;
 
-      try {
-        await fetch(BACKEND_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            field: fieldName,
-            value: value,
-            timestamp: new Date().toISOString(),
-          }),
-        });
-      } catch (err) {
-        console.warn('Could not save field to server:', err);
-      }
-    });
+    try {
+      await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          field: fieldName,
+          value: value,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch (err) {
+      console.warn('Realtime sync failed:', err);
+    }
   });
+});
 </script>
 
 </body>
