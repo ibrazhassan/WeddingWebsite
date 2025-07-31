@@ -1,98 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wedding RSVP</title>
+
+  <title>RSVP</title>
+
   <style>
+
+    html, body {
+
+      margin: 0;
+
+      padding: 0;
+
+      background: black;
+
+      height: 100%;
+
+      opacity: 0;
+
+      animation: fadeIn 1.5s ease forwards;
+
+      font-family: Arial, sans-serif;
+
+    }
+
+
+
+    @keyframes fadeIn {
+
+      to {
+
+        opacity: 1;
+
+      }
+
+    }
+
+
+
+
+    /* Fade out animation */
+
+
+    .fade-out {
+
+
+      animation: fadeOut 1s ease forwards;
+
+
+    }
+
+
+
+
+
+    @keyframes fadeOut {
+
+
+      to {
+
+
+        opacity: 0;
+
+
+      }
+
+
+    }
+
+
+
+
     body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #fdf6f6;
+
+      background-image: url('background.jpg');
+
+      background-repeat: no-repeat;
+
+      background-position: center center;
+
+      background-size: contain;
+
+      background-color: black;
+
     }
-    .form-group {
-      margin-bottom: 12px;
+
+
+
+    .form-container {
+
+      position: absolute;
+
+      top: 50%;
+
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      background: rgba(141, 141, 141, 0.3);
+
+      padding: 30px;
+
+      border-radius: 8px;
+
+      text-align: center;
+
+      width: 90%;
+
+      max-width: 400px;
+
     }
-    label {
-      display: block;
-      font-weight: bold;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
+
+
+
+    input, select, button {
+
+      background-color: rgba(255, 255, 255, 0.4);
+
       border: 1px solid #ccc;
-      border-radius: 4px;
+
+      color: black;
+
+      display: block;
+
+      width: 100%;
+
+      max-width: 100%;
+
+      height: 45px;
+
+      padding: 10px;
+
+      font-size: 16px;
+
+      border-radius: 6px;
+
+      box-sizing: border-box;
+
+      margin-bottom: 15px;
+
     }
+
+
+
+
+    /* Placeholder text color */
+
+    input::placeholder {
+
+      color: black;
+
+    }
+
+
+
+    select option[disabled] {
+
+      color: #555;
+
+    }
+
+
+
     button {
-      padding: 10px 15px;
-      background-color: #cc3366;
+
+      background-color: #333;
+
       color: white;
+
       border: none;
-      border-radius: 5px;
+
       cursor: pointer;
+
     }
+
+
+
+    button:hover {
+
+      background-color: #555;
+
+    }
+
+
+
+    .hidden {
+
+      display: none;
+
+    }
+
+
+
+    #thankYouMessage {
+
+      font-size: 18px;
+
+      margin-top: 20px;
+
+      color: white;
+
+      text-shadow: 1px 1px 4px black;
+
+    }
+
+
+
+    h2 {
+
+      color: white;
+
+      text-shadow: 1px 1px 4px black;
+
+    }
+
+
+
+
+    /* Responsive styles for small screens */
+
+    @media (max-width: 480px) {
+
+      .form-container {
+
+        width: 80%;
+
+        padding: 20px;
+
+        transform: translate(-50%, -55%);
+
+      }
+
+
+
+      input, select, button {
+
+        height: 40px;
+
+        font-size: 14px;
+
+      }
+
+
+
+      h2 {
+
+        font-size: 20px;
+
+      }
+
+
+
+      #thankYouMessage {
+
+        font-size: 16px;
+
+      }
+
+    }
+
   </style>
+
 </head>
+
 <body>
 
-  <h1>Wedding RSVP</h1>
-  <form id="rsvpForm">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required/>
-    </div>
+  <div class="form-container">
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required/>
-    </div>
+    <h2>Details</h2>
 
-    <div class="form-group">
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="4"></textarea>
-    </div>
+    <form id="rsvpForm" action="https://formspree.io/f/mldlngle" method="POST">
 
-    <button type="submit">Submit</button>
-  </form>
+      <input type="email" id="email" placeholder="Your Email" required />
+
+
+
+      <select id="attendance" required>
+
+        <option value="" selected disabled hidden>Will you attend?</option>
+
+        <option value="yes">Yes</option>
+
+        <option value="no">No</option>
+
+      </select>
+
+
+
+      <div id="additionalDetails" class="hidden">
+
+        <input type="text" placeholder="Number of Guests" required />
+
+        <input type="text" placeholder="Names of the Guests" required />
+
+        <button type="submit">Submit</button>
+
+      </div>
+
+
+
+      <div id="thankYouMessage" class="hidden">
+
+        Thank you for letting us know.
+
+      </div>
+
+    </form>
+
+  </div>
+
+
 
   <script>
-    const backendUrl = 'https://backend-wedding-1-wzio.onrender.com/api/save-field';
 
-    async function sendFieldData(field, value) {
-      const payload = {
-        field,
-        value,
-        timestamp: new Date().toISOString()
-      };
+    const attendanceSelect = document.getElementById('attendance');
 
-      try {
-        const res = await fetch(backendUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+    const emailInput = document.getElementById('email');
 
-        const data = await res.json();
-        console.log('Sent:', payload, '→ Response:', data);
-      } catch (err) {
-        console.error('Error sending field data:', err);
+    const additionalDetails = document.getElementById('additionalDetails');
+
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+
+    const form = document.getElementById('rsvpForm');
+
+
+
+    attendanceSelect.addEventListener('change', function () {
+
+      const selected = this.value;
+
+
+
+      if (selected === "yes") {
+
+        emailInput.classList.add('hidden');
+
+        attendanceSelect.classList.add('hidden');
+
+        additionalDetails.classList.remove('hidden');
+
+        thankYouMessage.classList.add('hidden');
+
+      } else if (selected === "no") {
+
+        emailInput.classList.add('hidden');
+
+        attendanceSelect.classList.add('hidden');
+
+        additionalDetails.classList.add('hidden');
+
+        thankYouMessage.classList.remove('hidden');
+
       }
-    }
 
-    document.querySelectorAll('input, textarea').forEach(input => {
-      input.addEventListener('input', (e) => {
-        sendFieldData(e.target.name, e.target.value);
-      });
     });
 
-    document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-      e.preventDefault(); // Prevent actual form submission for now
-      alert('Form submitted! (Data already saved in real time)');
+
+
+
+
+    form.addEventListener('submit', function (e) {
+
+
+      e.preventDefault();
+
+
+
+
+
+      // Trigger fade out
+
+
+      document.body.classList.add('fade-out');
+
+
+
+
+
+      // Redirect after fade
+
+
+      setTimeout(() => {
+
+
+        window.location.href = 'final.html';
+
+
+      }, 1000);
+
+
     });
+
   </script>
 
+  <script>
+  const BACKEND_URL = 'https://backend-wedding-1-wzio.onrender.com';
+
+document.querySelectorAll('#rsvpForm input, #rsvpForm select').forEach((el) => {
+  el.addEventListener('input', async (event) => {
+    const fieldName = event.target.placeholder || event.target.id;
+    const value = event.target.value;
+
+    try {
+      await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          field: fieldName,
+          value: value,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch (err) {
+      console.warn('Realtime sync failed:', err);
+    }
+  });
+});
+</script>
+
 </body>
+
 </html>
