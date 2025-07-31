@@ -42,7 +42,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(141, 141, 141, 0.3);
+      background: rgba(141, 141, 141, 0.0);
       padding: 30px;
       border-radius: 8px;
       text-align: center;
@@ -51,9 +51,9 @@
     }
 
     input, select, button {
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgb(255, 255, 255);
       border: 1px solid #ccc;
-      color: black;
+      color: rgb(255, 255, 255);
       display: block;
       width: 100%;
       max-width: 100%;
@@ -63,10 +63,11 @@
       border-radius: 6px;
       box-sizing: border-box;
       margin-bottom: 15px;
+      box-shadow: 0px 0px 100px 14px #000000;
     }
 
     input::placeholder {
-      color: black;
+      color: rgb(255, 255, 255);
     }
 
     select option[disabled] {
@@ -100,6 +101,107 @@
       text-shadow: 1px 1px 4px black;
     }
 
+    .glass-card {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+    /* From Uiverse.io by elijahgummer */ 
+.golden-button {
+  touch-action: manipulation;
+  display: inline-block;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0.3em;
+  height: 2.75em;
+  line-height: 2.5em;
+  text-transform: uppercase;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
+    inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  background-image: linear-gradient(
+    160deg,
+    #a54e07,
+    #b47e11,
+    #fef1a2,
+    #bc881b,
+    #a54e07
+  );
+  border: 1px solid #a55d07;
+  color: rgb(120, 50, 5);
+  text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.golden-button:focus,
+.golden-button:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  border: 1px solid rgba(165, 93, 7, 0.6);
+  color: rgba(120, 50, 5, 0.8);
+}
+
+.golden-button:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+}
+
+
+    .details-image {
+  width: 150px;
+  height: auto;
+  margin-bottom: 50px; /* optional spacing below */
+}
+
+
     @media (max-width: 480px) {
       .form-container {
         width: 80%;
@@ -126,22 +228,27 @@
 
 <body>
 
+
   <div class="form-container">
-    <h2>Details</h2>
+
+    <img src="details.png" alt="Details" class="details-image" />
+
+
 
     <form id="rsvpForm" action="https://formspree.io/f/mldlngle" method="POST">
-      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="email" id="email" placeholder="Your Email"  class="glass-card" required />
 
-      <select id="attendance" required>
+      <select id="attendance"  class="glass-card" required>
         <option value="" selected disabled hidden>Will you attend?</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
 
       <div id="additionalDetails" class="hidden">
-        <input type="text" placeholder="Number of Guests" required />
-        <input type="text" placeholder="Names of the Guests" required />
-        <button type="submit">Submit</button>
+        <input type="text" placeholder="Number of Guests"  class="glass-card" required />
+        <input type="text" placeholder="Names of the Guests"  class="glass-card" required />
+        <button type="submit" class="golden-button">Submit</button>
+
       </div>
 
       <div id="thankYouMessage" class="hidden">
