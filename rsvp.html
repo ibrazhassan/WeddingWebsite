@@ -146,10 +146,13 @@
   );
 }
 
+
+
 select.glass-card option {
   color: black;
   background-color: white;
 }
+
     /* From Uiverse.io by elijahgummer */ 
 .golden-button {
   touch-action: manipulation;
@@ -206,26 +209,38 @@ select.glass-card option {
 }
 
 
-    @media (max-width: 480px) {
-      .form-container {
-        width: 80%;
-        padding: 20px;
-        transform: translate(-50%, -55%);
-      }
+@media (max-width: 480px) {
 
-      input, select, button {
-        height: 40px;
-        font-size: 14px;
-      }
+  .hide-mobile {
+    display: none !important;
+  }
 
-      h2 {
-        font-size: 20px;
-      }
+  .form-container {
+    width: 50%;
+    padding: 15px;
+    transform: translate(-50%, -60%); /* Pushes form lower down */
+  }
 
-      #thankYouMessage {
-        font-size: 16px;
-      }
-    }
+  input, select, button {
+    height: 30px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 50px 5px #000000;
+  }
+
+  .details-image {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  #thankYouMessage {
+    font-size: 14px;
+  }
+}
   </style>
 
 </head>
@@ -235,7 +250,7 @@ select.glass-card option {
 
   <div class="form-container">
 
-    <img src="details.png" alt="Details" class="details-image" />
+    <img src="details.png" alt="Details" class="details-image" id="detailsImage" />
 
 
 
@@ -272,11 +287,17 @@ select.glass-card option {
       const selected = this.value;
 
       if (selected === "yes") {
-        emailInput.classList.add('hidden');
-        attendanceSelect.classList.add('hidden');
-        additionalDetails.classList.remove('hidden');
-        thankYouMessage.classList.add('hidden');
-      } else if (selected === "no") {
+  emailInput.classList.add('hidden');
+  attendanceSelect.classList.add('hidden');
+  additionalDetails.classList.remove('hidden');
+  thankYouMessage.classList.add('hidden');
+
+  // Hide the image only on mobile
+  const detailsImage = document.getElementById('detailsImage');
+  if (window.innerWidth <= 480) {
+    detailsImage.classList.add('hide-mobile');
+  }
+} else if (selected === "no") {
         emailInput.classList.add('hidden');
         attendanceSelect.classList.add('hidden');
         additionalDetails.classList.add('hidden');
