@@ -37,7 +37,7 @@
       -webkit-backdrop-filter: blur(9px);
       border-radius: 20px;
       border: 1px solid rgba(216, 166, 0, 0.3);
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.247),
         inset 0 -1px 0 rgba(255, 255, 255, 0.1);
@@ -46,6 +46,14 @@
       max-width: 800px;
       margin: 0 auto 40px auto;
       text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section::before {
@@ -142,39 +150,32 @@
     .download-button:hover {
       background-color: #f4dada;
     }
-
   </style>
 </head>
 <body>
 
   <div class="overlay">
 
-    <!-- Wedding Info -->
     <div class="section">
       <h2>Our Wedding Day</h2>
       <p>
         In the Name of Allah, the most Gracious, the most Merciful. 
-    <br>
-    <br>
+        <br><br>
         Our wedding day marks the culmination of our love story and the beautiful beginning of our shared future.
-    <br>
-    <br>
+        <br><br>
         The heart of our wedding day is the Nikkah, the Islamic marriage ceremony where we come together in the
         presence of loved ones and in the eyes of Allah. 
-    <br>    
+        <br>
         It's a moment of immense spiritual significance, filled
         with blessings and joy. 
-    <br>    
-    <br>
+        <br><br>
         Following the ceremony, join us for the Reception, an evening of love, laughter,
         and new beginnings. 
-        <br>
-        <br>
+        <br><br>
         We can't wait to celebrate with you as we step into this new chapter of our lives!
       </p>
     </div>
 
-    <!-- Dress Code -->
     <div class="section">
       <h2>Dress Code</h2>
       <p>
@@ -183,7 +184,6 @@
       </p>
     </div>
 
-    <!-- Calendar & Map -->
     <div class="section">
       <h2>Save the Date & Location</h2>
       <div class="calendar-map">
@@ -197,16 +197,33 @@
     </div>
 
     <div class="section">
-        <h2>Wedding Invitation</h2>
-        <p>
-          Download our official Shaadi Card to keep all the details handy and share with loved ones!
-        </p>
-        <a class="download-button" href="Shaadi Card - Static.png" download>
-          <i class="fas fa-file-download"></i> Download Invitation
-        </a>
-      </div>
+      <h2>Wedding Invitation</h2>
+      <p>
+        Download our official Shaadi Card to keep all the details handy and share with loved ones!
+      </p>
+      <a class="download-button" href="Shaadi Card - Static.png" download>
+        <i class="fas fa-file-download"></i> Download Invitation
+      </a>
+    </div>
 
   </div>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
