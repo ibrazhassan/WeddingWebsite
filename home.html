@@ -5,29 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Wedding</title>
 
-  <!-- Icons -->
+  <!-- Icons & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"/>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+      font-family: 'Inter', sans-serif;
+      color: #f4e8d4;
       background: url('homebg1.jpg') no-repeat center center fixed;
       background-size: cover;
       overflow-x: hidden;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
     }
 
     .overlay {
-      background-color: rgba(80, 0, 0, 0.15); /* Maroon overlay */
+      background-color: rgba(80, 0, 0, 0.15);
       min-height: 100vh;
       padding: 60px 20px;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 60px;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.6s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .section {
@@ -79,7 +108,11 @@
     .section h2 {
       margin-bottom: 15px;
       font-size: 28px;
-      color: #fff;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     .section p {
@@ -98,7 +131,7 @@
 
     .calendar-map a {
       text-decoration: none;
-      background-color: #fff;
+      background-color: #ffe0ce;
       color: maroon;
       padding: 12px 20px;
       border-radius: 12px;
@@ -135,7 +168,7 @@
 
     .download-button {
       text-decoration: none;
-      background-color: #fff;
+      background-color: #ffe0ce;
       color: maroon;
       padding: 12px 24px;
       font-weight: bold;
@@ -153,8 +186,11 @@
   </style>
 </head>
 <body>
-
   <div class="overlay">
+
+    <header>
+      <h1>A Glimpse Into Our Wedding Day</h1>
+    </header>
 
     <div class="section">
       <h2>Our Wedding Day</h2>
@@ -177,11 +213,13 @@
     </div>
 
     <div class="section">
-      <h2>Dress Code</h2>
+      <h2>Details</h2>
       <p>
-        Please dress to impress! For the Nikkah & Reception, we kindly request traditional South Asian formal wear
-        or elegant evening attire. Shades of gold or cream are encouraged to complement the theme.
+        For more information about the Shaadi day, click below!
       </p>
+      <a class="download-button" href="details.html" download>
+        <i class="fas fa-file-download"></i> Details
+      </a>
     </div>
 
     <div class="section">
@@ -213,8 +251,6 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
         }
       });
     }, {
