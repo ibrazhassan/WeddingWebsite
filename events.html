@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Wedding Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #662d3e;
+      color: #f4e8d4;
+      overflow-x: hidden;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    header {
+      padding: 4rem 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.6s ease-out forwards;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 1.5s forwards;
+    }
+
+    .countdown-box {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to right, #5a1e30, #702d3f);
+      border: 1px solid #f9e3c1;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 1.2rem;
+      color: #f9e3c1;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, #4a0e23, #61182f);
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      width: 100%;
+      max-width: 700px;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #f3dfc5;
+      line-height: 1.6;
+    }
+
+    .info-label {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #f9e3c1;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .buttons a {
+      background: linear-gradient(to bottom, #f9e2c1de, #d6a377, #be8159);
+      color: #3b0a24;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.5s ease;
+    }
+
+    .buttons a:hover {
+      background: linear-gradient(to bottom, #ffe6d0, #d7a88b, #7b5240);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Minha and Hassan's September!</h1>
+    <p>All of our Events and the respected Venues!</p>
+  </header>
+
+  <div class="card-container">
+    <div class="card">
+      <h2>Hassan's Haldi – September 7th, 2025</h2>
+      <p>In South Asian Muslim traditions, the Haldi ceremony is a joyful pre-wedding ritual where turmeric paste is applied to the groom. It's believed to purify and bless him before the big day. This lively event is filled with laughter, family bonding, and heartfelt blessings. RSVPs will be sent out closer to the event date.</p>
+    </div>
+
+    <div class="card">
+      <h2>Minha's Mayoun – September 10th, 2025</h2>
+      <p>The Mayoun marks the bride's transition into wedding festivities. Traditionally, it's a serene gathering where the bride begins her beauty regimen and is adorned with love and blessings. A cherished tradition in South Asian Muslim households. Location TBD. RSVPs will be sent out closer to the event date.</p>
+    </div>
+
+    <div class="card">
+      <h2>The Mehndi – September 12th, 2025</h2>
+      <p>Our Mehndi night is inspired by a mela — a festive explosion of colors, music, and dance! Expect traditional rasams, vibrant décor, and joyful celebration with loved ones. This celebration will be held at Oakville Legacy.<br><br>
+      <a href="https://minhaandhassan.com/mehndi" target="_blank">Click here to RSVP for the Mehndi</a></p>
+    </div>
+
+    <div class="card">
+      <h2>The Shaadi – September 14th, 2025</h2>
+      <p>The Nikah is the sacred Islamic marriage contract — the most meaningful moment of our journey. This formal event is followed by a reception full of blessings, elegance, and celebration. The Shaadi will be held at Ascott Parc.<br><br>
+      <a href="https://minhaandhassan.com" target="_blank">Click here to RSVP for the Shaadi</a></p>
+    </div>
+  </div>
+
+  <p class="info-label">For more information:</p>
+  <div class="buttons">
+    <a href="mailto:RSVP@minhaandhassan.com">Email Us</a>
+    <a href="https://wa.me/16474501377" target="_blank">Message on WhatsApp</a>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    const countdown = document.getElementById('countdown');
+    if (countdown) {
+      const weddingDate = new Date('2025-09-20T15:00:00');
+      const updateCountdown = () => {
+        const now = new Date();
+        const diff = weddingDate - now;
+        if (diff <= 0) {
+          countdown.innerText = "It's Wedding Time!";
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        countdown.innerText = `${days} days, ${hours} hours, ${minutes} minutes until the celebration begins.`;
+      };
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    }
+  </script>
+</body>
+</html>
