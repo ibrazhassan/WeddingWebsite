@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Wedding Day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #6b2b3e, #833a4d);
+      color: #f4e8d4;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 4rem 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.6s ease-out forwards;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 1.5s forwards;
+    }
+
+    .countdown-box {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to right, #5a1e30, #702d3f);
+      border: 1px solid #f9e3c1;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 1.2rem;
+      color: #f9e3c1;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, #4a0e23, #61182f);
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    }
+
+    .card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #f3dfc5;
+      line-height: 1.6;
+    }
+
+    .info-label {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #f9e3c1;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .buttons a {
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      color: #3b0a24;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.5s ease;
+    }
+
+    .buttons a:hover {
+      background: linear-gradient(to bottom, #ffe6d0, #d7a88b, #7b5240);
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      margin: 4rem 0;
+      border-radius: 12px;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to bottom, #f9e3c1, #d6a377, #8a5c3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+    }
+
+    .floating-rsvp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #d4af37;
+      color: #3b0a24;
+      padding: 1rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+
+    .floating-rsvp:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>A Glimpse Into Our Wedding Day</h1>
+    <p>Everything you need to know about celebrating with us</p>
+    <div class="countdown-box">
+      <div id="countdown"></div>
+    </div>
+  </header>
+
+  <div class="card-container">
+    <div class="card"><h2>🕒 The Baraat — 3:00 PM Sharp</h2><p>Our day begins with the lively arrival of the Baraat. We invite you to be there at 3:00 PM sharp to take part in the full joy (yes, even you who usually show up on “desi standard time”!).</p></div>
+    <div class="card"><h2>🌿 Nikkah Ceremony — 4:00 PM</h2><p>Under the open sky at the gazebo, our Nikkah will be a moment of peace, love, and deep reflection. We are honoured to share this spiritual moment with you all.</p></div>
+    <div class="card"><h2>🎉 Reception Follows</h2><p>Once our vows are made, we head indoors to celebrate — with food, laughter, and love. We can't wait to celebrate with you.</p></div>
+    <div class="card"><h2>🕊 A Day of Barakah</h2><p>We hope this day overflows with barakah (blessings). We kindly ask you to be present with us, in the moment — please enjoy the day without recording the intimate parts of our ceremony.</p></div>
+    <div class="card"><h2>🎁 Gifts & Presence</h2><p>Your prayers and presence are the greatest gifts. If you wish to gift us, we kindly request no boxed gifts.</p></div>
+  </div>
+
+  <p class="info-label">For more information:</p>
+  <div class="buttons">
+    <a href="mailto:you@minhaandhassan.com">Email Us</a>
+    <a href="https://wa.me/11234567890" target="_blank">Message on WhatsApp</a>
+  </div>
+
+  <section style="max-width: 1000px; margin: 4rem auto; padding: 0 2rem;">
+    <h2 class="section-title">Our Wedding Inspiration</h2>
+    <iframe src="https://assets.pinterest.com/ext/embed.html?id=YOUR_PINTEREST_BOARD_ID" title="Pinterest Wedding Board"></iframe>
+  </section>
+
+  <a class="floating-rsvp" href="#">RSVP</a>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    const countdown = document.getElementById('countdown');
+    const weddingDate = new Date('2025-09-20T15:00:00');
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = weddingDate - now;
+      if (diff <= 0) {
+        countdown.innerText = "It's Wedding Time!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      countdown.innerText = `${days} days, ${hours} hours, ${minutes} minutes until the celebration begins.`;
+    };
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
+</body>
+</html>
