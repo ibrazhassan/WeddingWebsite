@@ -1,64 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Be Our Guest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Minha & Hassan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      background: black;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
-    video {
+    html, body {
+      height: 100%;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
 
-    /* Overlay for cross-fade */
-    .overlay {
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: url('your-couple-photo.jpg') center center / cover no-repeat fixed;
+      position: relative;
+      color: #fff;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(102, 45, 62, 0.75), rgba(204, 120, 155, 0.75));
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .poetic {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #fef9f5;
+      margin-bottom: 1.5rem;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .buttons a {
+      padding: 1.2rem 2rem;
+      width: 180px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fef9f5;
+      color: #fef9f5;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .buttons a:hover {
+      background-color: #fef9f5;
+      color: #662d3e;
+    }
+
+    .contact {
+      position: relative;
+      z-index: 1;
+      bottom: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contact a {
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      background-color: #fef9f5;
+      color: #662d3e;
+      font-weight: 500;
+      transition: background-color 0.4s ease;
+      font-size: 0.95rem;
+    }
+
+    .contact a:hover {
+      background-color: #e6d6d0;
+    }
+
+    .countdown {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1.5s ease;
-      z-index: 10;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(235, 224, 222, 0.65);
+      color: #4e2b30;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      z-index: 2;
+      font-family: 'Outfit', sans-serif;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    .overlay.show {
-      opacity: 1;
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .poetic {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .buttons a {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        font-size: 1rem;
+        padding: 1rem;
+      }
+
+      .contact {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .countdown {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
+  <div class="countdown" id="countdown">Loading...</div>
 
-  <video id="welcomeVideo" autoplay muted playsinline>
-    <source src="video.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-
-  <!-- Fade overlay -->
-  <div id="fadeOverlay" class="overlay"></div>
+  <div class="container">
+    <div class="poetic">Two hearts, one promise — a lifetime of tomorrows begins now.</div>
+    <h1>Minha and Hassan are getting married!</h1>
+    <div class="buttons">
+      <a href="https://minhaandhassan.com/shaadi.html">Shaadi</a>
+      <a href="https://minhaandhassan.com/mehndi.html">Mehndi</a>
+    </div>
+    <div class="contact">
+      <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a>
+      <a href="mailto:hello@minhaandhassan.com">Email Us</a>
+    </div>
+  </div>
 
   <script>
-    // Trigger cross-fade
-    setTimeout(() => {
-      document.getElementById("fadeOverlay").classList.add("show");
-      setTimeout(() => {
-        window.location.href = "rsvp.html";
-      }, 1500); // Wait for fade to finish
-    }, 14000); // Trigger after 12s
+    function updateCountdown() {
+      const weddingDate = new Date("September 14, 2025 15:00:00");
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerText = "It's wedding time!";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("countdown").innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
+
 </body>
 </html>
-
-
