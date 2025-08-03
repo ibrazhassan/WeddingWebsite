@@ -6,6 +6,10 @@
   <title>Minha & Hassan</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -17,7 +21,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('your-couple-photo.jpg') center center / cover no-repeat fixed;
+      background: url('your-couple-photo1.jpg') center center / cover no-repeat fixed;
       color: #fff;
       position: relative;
       opacity: 0;
@@ -46,7 +50,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 2rem;
+      padding: 1.5rem;
     }
 
     .name-line {
@@ -122,11 +126,13 @@
 
     .buttons {
       display: flex;
-      gap: 2rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
-      margin-top: 3rem;
+      justify-content: center;
+      margin-top: 2.5rem;
       opacity: 0;
       animation: fadeInButtons 1.2s ease 4.3s forwards;
+      width: 100%;
     }
 
     @keyframes fadeInButtons {
@@ -134,13 +140,13 @@
     }
 
     .buttons a {
-      padding: 1.2rem 2rem;
-      width: 180px;
-      height: 70px;
+      padding: 0.8rem 1rem;
+      min-width: 120px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       background-color: rgba(255, 255, 255, 0.15);
       border: 2px solid #fef9f5;
@@ -162,10 +168,10 @@
       transform: translateX(-50%);
       background: rgba(235, 224, 222, 0.65);
       color: #4e2b30;
-      padding: 0.7rem 1.2rem;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 0.9rem;
       z-index: 2;
       font-family: 'Poppins', sans-serif;
       backdrop-filter: blur(5px);
@@ -189,31 +195,40 @@
       z-index: 5;
     }
 
-    .floating-buttons {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 5;
-    }
+    @media (max-width: 768px) {
+      .initial {
+        font-size: 3.5rem;
+      }
 
-    .floating-buttons a {
-      padding: 0.8rem 1rem;
-      border-radius: 50px;
-      background-color: #fef9f5;
-      color: #662d3e;
-      font-weight: 500;
-      text-decoration: none;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-    }
+      .rest, .ampersand {
+        font-size: 2rem;
+      }
 
-    .floating-buttons a:hover {
-      background-color: #e6d6d0;
-      transform: scale(1.05);
+      .poetic-line::before { display: none; }
+      .poetic-line span { display: none; }
+      .poetic-line::after {
+        content: "Two hearts, one promise\A—a lifetime of tomorrows begins now.";
+        white-space: pre-wrap;
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: #fef9f5;
+        margin-top: 0.3rem;
+      }
+
+      .buttons {
+        gap: 1rem;
+        margin-top: 2rem;
+        padding: 0 1rem;
+      }
+
+      .buttons a {
+        min-width: 100px;
+        flex: 1 1 40%;
+        font-size: 0.9rem;
+        height: 45px;
+      }
     }
   </style>
 </head>
@@ -221,7 +236,7 @@
   <div class="countdown" id="countdown">Loading...</div>
 
   <div class="container">
-    <div class="poetic-line">Two hearts, one promise — a lifetime of tomorrows begins now.</div>
+    <div class="poetic-line"><span>Two hearts, one promise — a lifetime of tomorrows begins now.</span></div>
 
     <div class="name-line">
       <div class="initial">M</div>
@@ -237,11 +252,6 @@
       <a href="https://minhaandhassan.com/shaadi.html">Shaadi</a>
       <a href="https://minhaandhassan.com/mehndi.html">Mehndi</a>
     </div>
-  </div>
-
-  <div class="floating-buttons">
-    <a href="https://wa.me/1234567890" target="_blank">WhatsApp</a>
-    <a href="mailto:hello@minhaandhassan.com">Email</a>
   </div>
 
   <script>
