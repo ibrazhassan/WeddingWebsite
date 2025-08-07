@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thank You - RSVP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    .fade-out {
+      animation: fadeOut 1s ease forwards;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('mehndicardgstatic.jpg') no-repeat center center;
+      background-size: cover;
+      filter: blur(25px) brightness(0.7);
+      z-index: 0;
+    }
+
+    .thankyou-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      background-color: rgba(255, 240, 245, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      max-width: 340px;
+      width: 90%;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #884c58;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .btn {
+      display: block;
+      margin: 0.7rem auto;
+      padding: 0.6rem 1.2rem;
+      background-color: #884c58;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      max-width: 240px;
+    }
+
+    .btn:hover {
+      background-color: #a55d6e;
+    }
+
+    .card-img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    @media screen and (max-height: 650px) {
+      .thankyou-box {
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Blurred background -->
+  <div class="background"></div>
+
+  <!-- Centered confirmation box -->
+  <div class="thankyou-box">
+    <h1>Thank you for your RSVP!</h1>
+
+    <a href="https://maps.google.com/?q=Your+Venue+Name+Address" target="_blank" class="btn">📍 View Location</a>
+    <a href="mehndi-invite.ics" download class="btn">📆 Add to Calendar</a>
+
+    <!-- Card image download -->
+    <a href="mehndicardgstatic.jpg" download="MehndiCard.jpg">
+      <img src="mehndicardgstatic.jpg" alt="Mehndi Card" class="card-img" />
+    </a>
+  </div>
+
+  <script>
+    // Optional fade-out logic placeholder
+    // Uncomment to use a timed redirect with fade out:
+    /*
+    setTimeout(() => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "index.html"; // or another page
+      }, 1000);
+    }, 5000);
+    */
+  </script>
+
+</body>
+</html>
