@@ -127,26 +127,55 @@
   <!-- RSVP Form Box -->
   <div class="rsvp-box">
     <h1>RSVP</h1>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <label for="email">Email Address</label>
-      <input type="email" name="Email" id="email" required />
+<form id="rsvpForm">
+  <label for="email">Email Address</label>
+  <input type="email" id="email" required>
 
-      <label for="attendance">Will you be attending?</label>
-      <select name="Attendance" id="attendance" required>
-        <option value="">-- Please select --</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
+  <label for="attendance">Will you be attending?</label>
+  <select id="attendance" required>
+    <option value="">-- Please select --</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+  </select>
 
-      <label for="guests">Number of Guests</label>
-      <input type="number" name="Guest Count" id="guests" min="1" required />
+  <label for="guests">Number of Guests</label>
+  <input type="number" id="guests" min="1" required>
 
-      <label for="names">Full Names of Everyone Coming</label>
-      <textarea name="Guest Names" id="names" rows="3" placeholder="E.g. Minha Amir, Hassan Ghazi" required></textarea>
+  <label for="names">Full Names of Everyone Coming</label>
+  <textarea id="names" rows="3" placeholder="E.g. Minha Amir, Hassan Ghazi" required></textarea>
 
-      <button type="submit">Submit RSVP</button>
-    </form>
+  <button type="submit">Submit RSVP</button>
+</form>
+
   </div>
+<script>
+  const form = document.getElementById("rsvpForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const data = {
+      email: document.getElementById("email").value,
+      attendance: document.getElementById("attendance").value,
+      guestCount: document.getElementById("guests").value,
+      guestNames: document.getElementById("names").value
+    };
+
+    fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(() => {
+      window.location.href = "thankyou.html";
+    }).catch((err) => {
+      alert("Something went wrong. Please try again.");
+      console.error(err);
+    });
+  });
+</script>
 
 </body>
 </html>
