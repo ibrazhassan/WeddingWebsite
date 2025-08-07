@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>RSVP - Mehndi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
       margin: 0;
@@ -36,32 +37,32 @@
     }
 
     .rsvp-box {
-      position: relative;
+      position: fixed;
       z-index: 2;
-      width: 300px;
-      max-height: 600px;
-      background-color: rgba(255, 240, 245, 0.82);
-      padding: 1.5rem;
+      width: 100%;
+      max-width: 320px;
+      min-width: 280px;
+      background-color: rgba(255, 240, 245, 0.6);
+      padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      overflow-y: auto;
-      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       backdrop-filter: blur(2px);
+      box-sizing: border-box;
     }
 
     h1 {
       text-align: center;
       color: #884c58;
       margin-bottom: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
 
     label {
       display: block;
-      margin-top: 1rem;
+      margin-top: 0.75rem;
       font-weight: bold;
       font-size: 0.95rem;
       color: #333;
@@ -69,11 +70,9 @@
     }
 
     input, select, textarea, button {
-      width: 280px;
-      padding: 0.5rem;
+      width: 100%;
+      padding: 0.45rem;
       margin-top: 0.4rem;
-      margin-left: auto;
-      margin-right: auto;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 0.95rem;
@@ -82,7 +81,8 @@
     }
 
     input, select, textarea {
-      background: white;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #333;
     }
 
     textarea {
@@ -90,21 +90,28 @@
     }
 
     button {
-      margin-top: 1.5rem;
-      background-color: #884c58;
+      margin-top: 1rem;
+      background-color: rgba(136, 76, 88, 0.9);
       color: white;
       border: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #a55d6e;
     }
 
-    @media screen and (max-height: 650px) {
+    @media (max-width: 350px) {
       .rsvp-box {
-        max-height: 90vh;
+        min-width: unset;
+        width: 90%;
+        padding: 0.75rem;
+      }
+
+      h1, label, input, select, textarea, button {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -122,7 +129,7 @@
     <h1>RSVP</h1>
     <form action="https://formspree.io/f/your-form-id" method="POST">
       <label for="email">Email Address</label>
-      <input type="email" name="Email" id="email" required>
+      <input type="email" name="Email" id="email" required />
 
       <label for="attendance">Will you be attending?</label>
       <select name="Attendance" id="attendance" required>
@@ -132,7 +139,7 @@
       </select>
 
       <label for="guests">Number of Guests</label>
-      <input type="number" name="Guest Count" id="guests" min="1" required>
+      <input type="number" name="Guest Count" id="guests" min="1" required />
 
       <label for="names">Full Names of Everyone Coming</label>
       <textarea name="Guest Names" id="names" rows="3" placeholder="E.g. Minha Amir, Hassan Ghazi" required></textarea>
