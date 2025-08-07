@@ -18,22 +18,22 @@
       object-fit: contain;
     }
 
-    /* Overlay for cross-fade */
+    /* Overlay for fade-in from white */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: black;
-      opacity: 0;
+      background: white; /* changed from black to white */
+      opacity: 1; /* start fully white */
       pointer-events: none;
       transition: opacity 1.5s ease;
       z-index: 10;
     }
 
-    .overlay.show {
-      opacity: 1;
+    .overlay.hide {
+      opacity: 0;
     }
   </style>
 </head>
@@ -46,17 +46,25 @@
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Fade overlay -->
+  <!-- White overlay for fade-in effect -->
   <div id="fadeOverlay" class="overlay"></div>
 
   <script>
-    // Trigger cross-fade
+    // Fade in from white at the start
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("fadeOverlay").classList.add("hide");
+      }, 100); // Short delay to allow rendering before fade
+    });
+
+    // Fade out to white and redirect
     setTimeout(() => {
-      document.getElementById("fadeOverlay").classList.add("show");
+      const overlay = document.getElementById("fadeOverlay");
+      overlay.classList.remove("hide");
       setTimeout(() => {
         window.location.href = "rsvpm.html";
-      }, 1500); // Wait for fade to finish
-    }, 14000); // Trigger after 12s
+      }, 1500);
+    }, 14000); // Wait for video
   </script>
 </body>
 </html>
