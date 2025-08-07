@@ -13,7 +13,6 @@
       background-color: black;
     }
 
-    /* Blurred full-screen background */
     .background-blur {
       position: fixed;
       top: 0;
@@ -26,7 +25,6 @@
       z-index: 0;
     }
 
-    /* Sharp, true-size centered image */
     .background-image {
       position: fixed;
       top: 50%;
@@ -37,23 +35,21 @@
       z-index: 1;
     }
 
-    /* RSVP form box on top */
     .rsvp-box {
       position: relative;
       z-index: 2;
       width: 300px;
       max-height: 600px;
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: rgba(255, 240, 245, 0.82);
       padding: 1.5rem;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       overflow-y: auto;
-
-      /* Center it over the background */
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      backdrop-filter: blur(2px);
     }
 
     h1 {
@@ -69,15 +65,24 @@
       font-weight: bold;
       font-size: 0.95rem;
       color: #333;
+      text-align: center;
     }
 
-    input, select, textarea {
-      width: 100%;
+    input, select, textarea, button {
+      width: 280px;
       padding: 0.5rem;
       margin-top: 0.4rem;
+      margin-left: auto;
+      margin-right: auto;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 0.95rem;
+      display: block;
+      box-sizing: border-box;
+    }
+
+    input, select, textarea {
+      background: white;
     }
 
     textarea {
@@ -86,12 +91,9 @@
 
     button {
       margin-top: 1.5rem;
-      width: 100%;
-      padding: 0.6rem;
       background-color: #884c58;
       color: white;
       border: none;
-      border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
     }
@@ -133,7 +135,7 @@
       <input type="number" name="Guest Count" id="guests" min="1" required>
 
       <label for="names">Full Names of Everyone Coming</label>
-      <textarea name="Guest Names" id="names" rows="3" placeholder="E.g. Minha Amir, Hassan Ghazi, etc" required></textarea>
+      <textarea name="Guest Names" id="names" rows="3" placeholder="E.g. Minha Amir, Hassan Ghazi" required></textarea>
 
       <button type="submit">Submit RSVP</button>
     </form>
