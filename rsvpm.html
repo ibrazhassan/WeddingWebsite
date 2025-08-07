@@ -10,8 +10,10 @@
       height: 100%;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
+      background-color: black;
     }
 
+    /* Blurred full-screen background */
     .background-blur {
       position: fixed;
       top: 0;
@@ -24,18 +26,18 @@
       z-index: 0;
     }
 
-    .background-sharp {
+    /* Sharp, true-size centered image */
+    .background-image {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: auto;
-      height: auto;
+      transform: translate(-50%, -50%);
       max-width: 100%;
       max-height: 100%;
-      transform: translate(-50%, -50%);
       z-index: 1;
     }
 
+    /* RSVP form box on top */
     .rsvp-box {
       position: relative;
       z-index: 2;
@@ -46,16 +48,12 @@
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       overflow-y: auto;
-      margin: auto;
-      top: 50%;
-      transform: translateY(-50%);
-    }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: black;
+      /* Center it over the background */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     h1 {
@@ -111,8 +109,11 @@
 </head>
 <body>
 
-  <!-- Blurred background image -->
+  <!-- Blurred background -->
   <div class="background-blur"></div>
+
+  <!-- Centered sharp card image -->
+  <img src="mehndicardnobgstatic.jpg" alt="Mehndi Invite" class="background-image" />
 
   <!-- RSVP Form Box -->
   <div class="rsvp-box">
