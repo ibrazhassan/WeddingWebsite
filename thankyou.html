@@ -142,6 +142,28 @@
       color: #662d3e;
     }
 
+    /* Details button */
+    .details-btn {
+      padding: 0.8rem 1.2rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fef9f5;
+      color: #fef9f5;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      position: fixed;
+      bottom: 20px;
+      left: 120px; /* Positioned next to Back button */
+      z-index: 9999; /* Ensures it's on top */
+    }
+
+    .details-btn:hover {
+      background-color: #fef9f5;
+      color: #662d3e;
+    }
+
     @media screen and (max-height: 650px) {
       .thankyou-box {
         max-height: 90vh;
@@ -168,9 +190,9 @@
     </a>
   </div>
 
-  <!-- Floating back button -->
+  <!-- Floating back button and details button -->
   <a href="https://minhaandhassan.com" class="back-btn">Back</a>
+  <a href="https://minhaandhassan.com/our-mehndi.html" class="details-btn">Details</a>
 
-  <script>
-    // Optional fade-out logic placeholder
-    // Un
+</body>
+</html>
