@@ -20,14 +20,6 @@
       to { opacity: 1; }
     }
 
-    @keyframes fadeOut {
-      to { opacity: 0; }
-    }
-
-    .fade-out {
-      animation: fadeOut 1s ease forwards;
-    }
-
     .background {
       position: fixed;
       top: 0;
@@ -89,24 +81,65 @@
       cursor: pointer;
     }
 
-    /* Floating back button */
+    /* Floating back button style */
+    .buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeInButtons 1.2s ease 4.3s forwards;
+      width: 100%;
+    }
+
+    @keyframes fadeInButtons {
+      to { opacity: 1; }
+    }
+
+    .buttons a {
+      padding: 0.8rem 1rem;
+      min-width: 120px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fef9f5;
+      color: #fef9f5;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border-radius: 5px;
+      flex: 1 1 40%;
+    }
+
+    .buttons a:hover {
+      background-color: #fef9f5;
+      color: #662d3e;
+    }
+
+    /* Floating Back Button */
     .back-btn {
+      padding: 0.8rem 1.2rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fef9f5;
+      color: #fef9f5;
+      text-decoration: none;
+      border-radius: 10px; /* Rounded edges */
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #884c58;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 1rem;
-      text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s ease;
-      z-index: 9999; /* Ensure it stays on top of all content */
+      z-index: 9999; /* Ensures it's on top */
     }
 
     .back-btn:hover {
-      background-color: #a55d6e;
+      background-color: #fef9f5;
+      color: #662d3e;
     }
 
     @media screen and (max-height: 650px) {
@@ -140,16 +173,4 @@
 
   <script>
     // Optional fade-out logic placeholder
-    // Uncomment to use a timed redirect with fade out:
-    /*
-    setTimeout(() => {
-      document.body.classList.add("fade-out");
-      setTimeout(() => {
-        window.location.href = "index.html"; // or another page
-      }, 1000);
-    }, 5000);
-    */
-  </script>
-
-</body>
-</html>
+    // Un
