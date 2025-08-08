@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hassan and Minha's Mehndi</title>
   <style>
     html, body {
@@ -11,7 +10,6 @@
       height: 100%;
       background: black;
       overflow: hidden;
-      -webkit-overflow-scrolling: touch;
     }
 
     .video-container {
@@ -82,14 +80,14 @@
   <div id="fadeOverlay" class="overlay"></div>
 
   <script>
-    // Ensure both videos can play on iPhone
+    // Fade in from white at load
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("fadeOverlay").classList.add("hide");
       }, 100);
     });
 
-    // Fading to white and redirecting after 14 seconds
+    // Fade out to white and redirect
     setTimeout(() => {
       const overlay = document.getElementById("fadeOverlay");
       overlay.classList.remove("hide");
@@ -97,19 +95,6 @@
         window.location.href = "rsvpm.html";
       }, 1500);
     }, 14000);
-
-    // Ensure video plays on mobile (autoplay may be restricted)
-    const bgVideo = document.querySelector('.bg-video');
-    const mainVideo = document.querySelector('.main-video');
-
-    // For iOS devices, ensure videos are ready to play
-    bgVideo.addEventListener('canplaythrough', () => {
-      bgVideo.play();
-    });
-
-    mainVideo.addEventListener('canplaythrough', () => {
-      mainVideo.play();
-    });
   </script>
 
 </body>
