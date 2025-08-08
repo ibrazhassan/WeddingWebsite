@@ -124,6 +124,53 @@
       background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
     }
 
+    .song-request-box {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: linear-gradient(to right, #e2517c, #ff6890);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .song-request-box h2 {
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .song-request-box p {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .song-request-box input[type="text"], .song-request-box textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #4a0e23;
+      background-color: #f9e3c1;
+    }
+
+    .song-request-box button {
+      background: linear-gradient(to bottom, #eea0c6de, #d67797, #db7194);
+      color: #3b0a24;
+      padding: 0.8rem 1.5rem;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.5s ease;
+    }
+
+    .song-request-box button:hover {
+      background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
+    }
 
     .floating-rsvp:hover {
       transform: scale(1.05);
@@ -174,6 +221,17 @@
       <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
     </div>
   </header>
+
+  <!-- Song Request Box -->
+  <div class="song-request-box">
+    <h2>Request a Song!</h2>
+    <p>Have a favorite song you'd love to hear? Let us know!</p>
+    <form action="#" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <textarea name="song" rows="4" placeholder="Song Request" required></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
 
   <div class="buttons">
     <a href="https://wa.me/16474501377" target="_blank">Message Us</a>
