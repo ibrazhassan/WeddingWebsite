@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Mehndi Celebration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient( #7abcb5); /* Muted Teal Gradient */
+      color: #f4e8d4;
+      overflow-x: hidden;
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('mehndicardgstatic.jpg') no-repeat center center;
+      background-size: cover;
+      filter: blur(25px) brightness(0.7);
+      z-index: 0;
+    }
+
+    header {
+      padding: 4rem 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      background: linear-gradient(to bottom, #f9e3c1, #f6adc6); /* Pink to white gradient */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.6s ease-out forwards;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 1.5s forwards;
+    }
+
+    .celebration-box {
+      max-width: 600px;
+      margin: 2rem auto 0;
+      padding: 1.5rem;
+      background: #f9e3c1;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .celebration-box h2 {
+      color: #4a0e23;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .celebration-box p {
+      font-size: 1.2rem;
+      color: #702d3f;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .countdown-box {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to right, #5a1e30, #702d3f);
+      border: 1px solid #f9e3c1;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    #countdown {
+      font-size: 1.2rem;
+      color: #f9e3c1;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .buttons a {
+      background: linear-gradient(to bottom, #e9bed3de, #d67797, #db7194);
+      color: #3b0a24;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.5s ease;
+    }
+
+    .buttons a:hover {
+      background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
+    }
+
+    .floating-rsvp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffde72;
+      color: #3b0a24;
+      padding: 1rem 1.5rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+
+    .floating-rsvp:hover {
+      transform: scale(1.05);
+    }
+
+    /* Floating Back Button */
+    .back-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 0.8rem 1.2rem;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid #fef9f5;
+      color: #fef9f5;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.4s ease;
+      z-index: 9999; /* Ensures it stays on top */
+    }
+
+    .back-btn:hover {
+      background-color: #fef9f5;
+      color: #662d3e;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Inspired by the Bustling Melas</h1>
+    <p>Our Mehndi celebration is all about color, music, and joyful togetherness!</p>
+    <div class="celebration-box">
+      <h2>Join Us for an Evening of Fun</h2>
+      <p>Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
+      <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
+    </div>
+  </header>
+
+  <div class="buttons">
+    <a href="https://wa.me/16474501377" target="_blank">Message on WhatsApp</a>
+    <a href="mailto:RSVP@minhaandhassan.com">Email Us</a>
+  </div>
+  <!-- Floating Back Button -->
+  <a href="https://minhaandhassan.com" class="back-btn">Home</a>
+
+
+</body>
+</html>
