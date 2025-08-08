@@ -103,14 +103,37 @@
       background-color: #a55d6e;
     }
 
+    /* Spinner style */
     .spinner {
       display: none;
-      margin-top: 1rem;
       text-align: center;
+      margin-top: 1rem;
     }
 
     .spinner.show {
       display: block;
+    }
+
+    .spinner .circle {
+      border: 4px solid transparent;
+      border-top: 4px solid rgba(136, 76, 88, 0.9);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    .spinner p {
+      color: #a55d6e;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    /* Spinner animation */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     @media (max-width: 350px) {
@@ -159,7 +182,8 @@
 
     <!-- Spinner (hidden by default) -->
     <div class="spinner" id="spinner">
-      <p>Submitting...</p>
+      <div class="circle"></div>
+      <p>Submitting, please wait...</p>
     </div>
   </div>
 
