@@ -61,9 +61,10 @@
       animation: fadeUp 1.2s ease 1.5s forwards;
     }
 
-    .celebration-box {
+    .celebration-box, .song-request-box, .countdown-box {
       max-width: 600px;
-      margin: 2rem auto 0;
+      width: 100%;
+      margin: 2rem auto;
       padding: 1.5rem;
       background: #f9e3c1;
       border-radius: 12px;
@@ -71,13 +72,13 @@
       text-align: center;
     }
 
-    .celebration-box h2 {
+    .celebration-box h2, .song-request-box h2 {
       color: #4a0e23;
       font-size: 1.8rem;
       margin-bottom: 1rem;
     }
 
-    .celebration-box p {
+    .celebration-box p, .song-request-box p {
       font-size: 1.2rem;
       color: #702d3f;
       line-height: 1.6;
@@ -85,14 +86,8 @@
     }
 
     .countdown-box {
-      max-width: 400px;
-      margin: 2rem auto 0;
-      padding: 1rem 1.5rem;
       background: linear-gradient(to right, #e2517c, #ff6890);
       border: 1px solid #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      text-align: center;
     }
 
     #countdown {
@@ -113,37 +108,16 @@
       color: #3b0a24;
       padding: 0.8rem 1.5rem;
       border: 1px solid #ffffff;
-
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
       transition: background 0.5s ease;
+      width: 200px; /* Ensures all buttons are the same width */
+      text-align: center;
     }
 
     .buttons a:hover {
       background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
-    }
-
-    .song-request-box {
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: linear-gradient(to right, #e2517c, #ff6890);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-
-    .song-request-box h2 {
-      color: #ffffff;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .song-request-box p {
-      font-size: 1.2rem;
-      color: #ffffff;
-      margin-bottom: 1.5rem;
     }
 
     .song-request-box input[type="text"], .song-request-box textarea {
@@ -166,14 +140,11 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.5s ease;
+      width: 100%; /* Ensures button matches the input width */
     }
 
     .song-request-box button:hover {
       background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
-    }
-
-    .floating-rsvp:hover {
-      transform: scale(1.05);
     }
 
     /* Floating Back Button */
@@ -217,7 +188,8 @@
     <p>A Night of Color, Music, and Memories – Let's Dance, Laugh, and Celebrate Together!</p>
     <div class="celebration-box">
       <h2>Join Us for an Evening of Fun</h2>
-      <p>Our Mehndi celebration, inspired by the bustling South Asian melas, is all about color, music, and joyful togetherness! </p> <p> Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
+      <p>Our Mehndi celebration, inspired by the bustling South Asian melas, is all about color, music, and joyful togetherness!</p>
+      <p>Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
       <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
     </div>
   </header>
@@ -243,14 +215,6 @@
     <div id="countdown"></div>
   </div>
 
-  <div>
-    <a>
-        <p>
-            <br>
-        </p>
-    </a>
-  </div>
-
   <script>
     const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver(entries => {
@@ -274,13 +238,10 @@
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      countdown.innerText = `${days} days, ${hours} hours, ${minutes} minutes until the celebration begins.`;
+      countdown.innerText = `${days} days, ${hours} hours, ${minutes} minutes until the celebration begins`;
     };
     updateCountdown();
     setInterval(updateCountdown, 60000);
   </script>
 </body>
 </html>
-
-
-
