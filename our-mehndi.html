@@ -42,11 +42,10 @@
       text-align: center;
     }
 
-
     header h1 {
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
-      background: linear-gradient(to bottom, #ff6a8f, #ff0059);  /* Pink to white gradient */
+      background: linear-gradient(to bottom, #ff6a8f, #ff0059); /* Pink to white gradient */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -89,8 +88,8 @@
       max-width: 400px;
       margin: 2rem auto 0;
       padding: 1rem 1.5rem;
-      background: linear-gradient(to right, #5a1e30, #702d3f);
-      border: 1px solid #f9e3c1;
+      background: linear-gradient(to right, #e2517c, #ff6890);
+      border: 1px solid #ffffff;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
       text-align: center;
@@ -98,7 +97,7 @@
 
     #countdown {
       font-size: 1.2rem;
-      color: #f9e3c1;
+      color: #ffffff;
     }
 
     .buttons {
@@ -110,9 +109,11 @@
     }
 
     .buttons a {
-      background: linear-gradient(to bottom, #e9bed3de, #d67797, #db7194);
+      background: linear-gradient(to bottom, #eea0c6de, #d67797, #db7194);
       color: #3b0a24;
       padding: 0.8rem 1.5rem;
+      border: 1px solid #ffffff;
+
       border-radius: 6px;
       text-decoration: none;
       font-weight: 600;
@@ -123,20 +124,6 @@
       background: linear-gradient(to bottom, #ffc0e3, #e9afe4, #7b404d);
     }
 
-    .floating-rsvp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ffde72;
-      color: #3b0a24;
-      padding: 1rem 1.5rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      transition: transform 0.3s;
-    }
 
     .floating-rsvp:hover {
       transform: scale(1.05);
@@ -179,19 +166,9 @@
 </head>
 <body>
   <header>
-    <h1>Our Mehndi</h1>
-    <p>Inspired by the bustling Melas of South Asia. Our Mehndi celebration is all about color, music, and joyful togetherness!</p>
+    <h1>Inspired by the Bustling Melas</h1>
+    <p>Our Mehndi celebration is all about color, music, and joyful togetherness!</p>
     <div class="celebration-box">
-      <h2>Join Us for an Evening of Fun</h2>
-      <p>Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
-      <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
-    </div>
-        <div class="celebration-box">
-      <h2>Join Us for an Evening of Fun</h2>
-      <p>Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
-      <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
-    </div>
-        <div class="celebration-box">
       <h2>Join Us for an Evening of Fun</h2>
       <p>Enjoy delicious food, lively music, and an atmosphere filled with vibrant colors. It's a night of laughter, joy, and unforgettable memories as we celebrate with all of you!</p>
       <p>Come dressed in your brightest, most festive attire and be ready for a celebration full of fun, flavor, and festive spirit!</p>
@@ -201,14 +178,40 @@
   <div class="buttons">
     <a href="https://wa.me/16474501377" target="_blank">Message Us</a>
     <a href="mailto:RSVP@minhaandhassan.com">Email Us</a>
-    <a href="https://www.minhaandhassan.com">Home</a>
+    <a href="minhaandhassan.com">Home</a>
   </div>
 
+  <div class="countdown-box">
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    const countdown = document.getElementById('countdown');
+    const weddingDate = new Date('2025-09-12T18:00:00');
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = weddingDate - now;
+      if (diff <= 0) {
+        countdown.innerText = "It's Wedding Time!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      countdown.innerText = `${days} days, ${hours} hours, ${minutes} minutes until the celebration begins.`;
+    };
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+  </script>
 </body>
 </html>
-
-
-
-
-
-
