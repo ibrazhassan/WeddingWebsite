@@ -38,7 +38,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 1;
-      background-color: rgba(255, 240, 245, 0.6);
+      background-color: rgba(255, 240, 245, 0.9);
       padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -81,87 +81,41 @@
       cursor: pointer;
     }
 
-    /* Floating back button style */
+    .card-img-text {
+      color: #884c58;
+      font-size: 1rem;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Floating back and details button style */
     .buttons {
       display: flex;
       gap: 1.2rem;
-      flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2.5rem;
-      opacity: 0;
-      animation: fadeInButtons 1.2s ease 4.3s forwards;
-      width: 100%;
-    }
-
-    @keyframes fadeInButtons {
-      to { opacity: 1; }
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999; /* Ensures buttons stay on top */
     }
 
     .buttons a {
-      padding: 0.8rem 1rem;
-      min-width: 120px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: 600;
-      background-color: rgba(255, 255, 255, 0.15);
-      border: 2px solid #fef9f5;
-      color: #fef9f5;
-      text-decoration: none;
-      transition: all 0.4s ease;
-      border-radius: 5px;
-      flex: 1 1 40%;
-    }
-
-    .buttons a:hover {
-      background-color: #fef9f5;
-      color: #662d3e;
-    }
-
-    /* Floating Back Button */
-    .back-btn {
       padding: 0.8rem 1.2rem;
-      background-color: rgba(255, 255, 255, 0.55);
-      border: 2px solid #fef9f5;
-      color: #fef9f5;
-      text-decoration: none;
-      border-radius: 10px; /* Rounded edges */
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.4s ease;
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 9999; /* Ensures it's on top */
-    }
-
-    .back-btn:hover {
-      background-color: #fef9f5;
-      color: #662d3e;
-    }
-
-    /* Details button */
-    .details-btn {
-      padding: 0.8rem 1.2rem;
-      background-color: rgba(255, 255, 255, 0.55);
-      border: 2px solid #fef9f5;
-      color: #fef9f5;
+      background-color: #884c58;
+      color: white;
       text-decoration: none;
       border-radius: 10px;
       font-size: 1rem;
       font-weight: 600;
       transition: all 0.4s ease;
-      position: fixed;
-      bottom: 20px;
-      left: 120px; /* Positioned next to Back button */
-      z-index: 9999; /* Ensures it's on top */
+      width: 100%;
+      max-width: 240px;
+      text-align: center;
     }
 
-    .details-btn:hover {
-      background-color: #fef9f5;
-      color: #662d3e;
+    .buttons a:hover {
+      background-color: #a55d6e;
     }
 
     @media screen and (max-height: 650px) {
@@ -188,11 +142,16 @@
     <a href="mehndicardgstatic.jpg" download="MehndiCard.jpg">
       <img src="mehndicardgstatic.jpg" alt="Mehndi Card" class="card-img" />
     </a>
+
+    <!-- "Tap to Download" text below the image -->
+    <div class="card-img-text">Tap the image to download</div>
   </div>
 
-  <!-- Floating back button and details button -->
-  <a href="https://minhaandhassan.com" class="back-btn">Back</a>
-  <a href="https://minhaandhassan.com/our-mehndi.html" class="details-btn">Details</a>
-
+  <!-- Floating back and details buttons -->
+  <div class="buttons">
+    <a href="https://minhaandhassan.com" class="back-btn">Back</a>
+    <a href="https://minhaandhassan.com/our-mehndi.html" class="back-btn">Details</a>
+  </div>
+  
 </body>
 </html>
