@@ -89,6 +89,25 @@
       cursor: pointer;
     }
 
+    /* Floating back button */
+    .back-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #884c58;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #a55d6e;
+    }
+
     @media screen and (max-height: 650px) {
       .thankyou-box {
         max-height: 90vh;
@@ -114,6 +133,9 @@
       <img src="mehndicardgstatic.jpg" alt="Mehndi Card" class="card-img" />
     </a>
   </div>
+
+  <!-- Floating back button -->
+  <a href="https://minhaandhassan.com" class="back-btn">Back</a>
 
   <script>
     // Optional fade-out logic placeholder
