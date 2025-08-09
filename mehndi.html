@@ -61,24 +61,18 @@
 
   <audio id="bgmusic" src="bgmusic1.mp3" autoplay loop></audio>
 
-  <!-- Foreground sharp video -->
   <video id="mainVideo" class="main-video" autoplay muted playsinline>
     <source src="video1.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- White overlay for fade-in/out -->
-  <div id="fadeOverlay" class="overlay"></div>
-
   <script>
-    // Fade in from white at load
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("fadeOverlay").classList.add("hide");
       }, 100);
     });
 
-    // Wait for video to finish playing before redirecting
     const video = document.getElementById("mainVideo");
     video.addEventListener("ended", () => {
       const overlay = document.getElementById("fadeOverlay");
