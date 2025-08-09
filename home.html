@@ -185,6 +185,37 @@
     .download-button:hover {
       background-color: #f4dada;
     }
+
+    /* Button Styles at the Bottom */
+    .bottom-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .bottom-buttons a {
+      text-decoration: none;
+      background-color: #ffe0ce;
+      color: maroon;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .bottom-buttons a:hover {
+      background-color: #f4dada;
+    }
+
+    .bottom-buttons i {
+      font-size: 18px;
+    }
+
   </style>
 </head>
 <body>
@@ -194,6 +225,7 @@
       <h1>A Glimpse Into Our Wedding Day</h1>
     </header>
 
+    <!-- Sections here... -->
     <div class="section">
       <h2>Our Wedding Day</h2>
       <p>
@@ -226,7 +258,7 @@
       </div>
     </div>
 
-        <div class="section">
+    <div class="section">
       <h2>Details</h2>
       <p>
         For more information about the Shaadi day, click below!
@@ -246,13 +278,26 @@
       </a>
     </div>
 
-        <div class="section">
+    <div class="section">
       <h2>Other Events</h2>
       <p>
         List of all the Events, and venues!
       </p>
       <a class="download-button" href="events.html">
         <i class="fa-solid fa-champagne-glasses"></i> Events
+      </a>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="bottom-buttons">
+      <a href="mailto:your_email@example.com">
+        <i class="fas fa-envelope"></i> Email Us
+      </a>
+      <a href="sms:+1234567890">
+        <i class="fas fa-comments"></i> Message Us
+      </a>
+      <a href="javascript:history.back()">
+        <i class="fas fa-arrow-left"></i> Back
       </a>
     </div>
 
