@@ -2,93 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hassan and Minha's Mehndi</title>
+  <title>Be Our Guest</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: black;
+      background: rgb(255, 255, 255);
       overflow: hidden;
     }
 
-    .main-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 100%;
-      max-height: 100%;
+    video {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      z-index: 1;
     }
 
+    /* Overlay for cross-fade */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
-      opacity: 1;
+      background: rgb(255, 255, 255);
+      opacity: 0;
       pointer-events: none;
       transition: opacity 1.5s ease;
-      z-index: 2;
+      z-index: 10;
     }
 
-    .overlay.hide {
-      opacity: 0;
+    .overlay.show {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <audio id="bgmusic" src="bgmusic1.mp3" loop></audio>
+  <audio id="bgmusic" src="bgmusic1.mp3" autoplay loop></audio>
 
-  <!-- Main video -->
-  <video id="mainVideo" class="main-video" preload="auto" playsinline>
+  <video id="welcomeVideo" autoplay muted playsinline>
     <source src="video1.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- White overlay for fade-in/out -->
+  <!-- Fade overlay -->
   <div id="fadeOverlay" class="overlay"></div>
 
   <script>
-    const overlay = document.getElementById("fadeOverlay");
-    const video = document.getElementById("mainVideo");
-    const music = document.getElementById("bgmusic");
+    const video = document.getElementById('welcomeVideo');
+    const overlay = document.getElementById('fadeOverlay');
+    let navigated = false;
 
-    // Fade in from white
-    window.addEventListener("load", () => {
+    function goNext() {
+      if (navigated) return;
+      navigated = true;
+      overlay.classList.add('show');
       setTimeout(() => {
-        overlay.classList.add("hide");
-      }, 200);
+        window.location.href = 'rsvpm.html';
+      }, 1500); // wait for fade to finish
+    }
+
+    // Go next when the video actually ends
+    video.addEventListener('ended', goNext, { once: true });
+
+    // Safety fallback: if 'ended' doesn't fire (rare), use duration
+    video.addEventListener('loadedmetadata', () => {
+      // Add a small buffer beyond duration in case of fractional rounding
+      const fallbackMs = (video.duration + 0.5) * 1000;
+      setTimeout(() => {
+        // If we're within 0.2s of the end, proceed
+        if (!navigated && (video.duration - video.currentTime) <= 0.2) {
+          goNext();
+        }
+      }, fallbackMs);
     });
 
-    // Wait until video can play smoothly
-    video.addEventListener("canplaythrough", () => {
-      video.play().then(() => {
-        music.play().catch(() => {
-          console.log("Music autoplay blocked until user interaction.");
-        });
-      }).catch(err => {
-        console.log("Autoplay blocked, waiting for click...");
-        document.body.addEventListener("click", () => {
-          video.play();
-          music.play();
-        }, { once: true });
-      });
-    });
-
-    // When video finishes, fade out and redirect
-    video.addEventListener("ended", () => {
-      overlay.classList.remove("hide");
-      setTimeout(() => {
-        window.location.href = "rsvpm.html";
-      }, 1500);
+    // Extra robustness: if playback stalls right at the end
+    video.addEventListener('timeupdate', () => {
+      if (!navigated && video.duration && (video.duration - video.currentTime) <= 0.05) {
+        // Close enough to "ended"
+        goNext();
+      }
     });
   </script>
-
 </body>
 </html>
