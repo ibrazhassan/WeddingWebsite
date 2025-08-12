@@ -12,22 +12,6 @@
       overflow: hidden;
     }
 
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .bg-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
     .main-video {
       position: absolute;
       top: 50%;
@@ -59,10 +43,10 @@
 </head>
 <body>
 
-  <audio id="bgmusic" src="bgmusic1.mp3" autoplay loop></audio>
+  <audio id="bgmusic" src="bgmusic1.mp3" loop></audio>
 
-  <!-- Foreground sharp video -->
-  <video id="mainVideo" class="main-video" autoplay muted playsinline>
+  <!-- Main video -->
+  <video id="mainVideo" class="main-video" preload="auto" playsinline>
     <source src="video1.mp4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
@@ -71,17 +55,34 @@
   <div id="fadeOverlay" class="overlay"></div>
 
   <script>
-    // Fade in from white at load
+    const overlay = document.getElementById("fadeOverlay");
+    const video = document.getElementById("mainVideo");
+    const music = document.getElementById("bgmusic");
+
+    // Fade in from white
     window.addEventListener("load", () => {
       setTimeout(() => {
-        document.getElementById("fadeOverlay").classList.add("hide");
-      }, 100);
+        overlay.classList.add("hide");
+      }, 200);
     });
 
-    // Wait for video to finish playing before redirecting
-    const video = document.getElementById("mainVideo");
+    // Wait until video can play smoothly
+    video.addEventListener("canplaythrough", () => {
+      video.play().then(() => {
+        music.play().catch(() => {
+          console.log("Music autoplay blocked until user interaction.");
+        });
+      }).catch(err => {
+        console.log("Autoplay blocked, waiting for click...");
+        document.body.addEventListener("click", () => {
+          video.play();
+          music.play();
+        }, { once: true });
+      });
+    });
+
+    // When video finishes, fade out and redirect
     video.addEventListener("ended", () => {
-      const overlay = document.getElementById("fadeOverlay");
       overlay.classList.remove("hide");
       setTimeout(() => {
         window.location.href = "rsvpm.html";
