@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be Our Guest</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Overlay for cross-fade */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease;
+      z-index: 10;
+    }
+
+    .overlay.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgmusic" src="bgmusic.mp3" autoplay loop></audio>
+
+  <video id="welcomeVideo" autoplay muted playsinline>
+    <source src="video.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Fade overlay -->
+  <div id="fadeOverlay" class="overlay"></div>
+
+  <script>
+    const video = document.getElementById('welcomeVideo');
+    const overlay = document.getElementById('fadeOverlay');
+    let navigated = false;
+
+    function goNext() {
+      if (navigated) return;
+      navigated = true;
+      overlay.classList.add('show');
+      setTimeout(() => {
+        window.location.href = 'rsvp.html';
+      }, 1500); // wait for fade to finish
+    }
+
+    // Go next when the video actually ends
+    video.addEventListener('ended', goNext, { once: true });
+
+    // Safety fallback: if 'ended' doesn't fire (rare), use duration
+    video.addEventListener('loadedmetadata', () => {
+      // Add a small buffer beyond duration in case of fractional rounding
+      const fallbackMs = (video.duration + 0.5) * 1000;
+      setTimeout(() => {
+        // If we're within 0.2s of the end, proceed
+        if (!navigated && (video.duration - video.currentTime) <= 0.2) {
+          goNext();
+        }
+      }, fallbackMs);
+    });
+
+    // Extra robustness: if playback stalls right at the end
+    video.addEventListener('timeupdate', () => {
+      if (!navigated && video.duration && (video.duration - video.currentTime) <= 0.05) {
+        // Close enough to "ended"
+        goNext();
+      }
+    });
+  </script>
+</body>
+</html>

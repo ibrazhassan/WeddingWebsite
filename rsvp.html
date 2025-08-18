@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RSVP</title>
+
   <style>
     html, body {
       margin: 0;
@@ -16,9 +18,15 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
+    }
+
+    .fade-out {
+      animation: fadeOut 1s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
     }
 
     body {
@@ -34,7 +42,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(141, 141, 141, 0.3);
+      background: rgba(141, 141, 141, 0.0);
       padding: 30px;
       border-radius: 8px;
       text-align: center;
@@ -43,9 +51,9 @@
     }
 
     input, select, button {
-      background-color: rgba(255, 255, 255, 0.4); /* Transparent inputs */
+      background-color: rgb(255, 255, 255);
       border: 1px solid #ccc;
-      color: #000;
+      color: rgb(255, 255, 255);
       display: block;
       width: 100%;
       max-width: 100%;
@@ -55,6 +63,15 @@
       border-radius: 6px;
       box-sizing: border-box;
       margin-bottom: 15px;
+      box-shadow: 0px 0px 100px 14px #000000;
+    }
+
+    input::placeholder {
+      color: rgb(255, 255, 255);
+    }
+
+    select option[disabled] {
+      color: #555;
     }
 
     button {
@@ -80,27 +97,177 @@
     }
 
     h2 {
-    color: white;
-    text-shadow: 1px 1px 4px black;
-  }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h2>Details</h2>
-    <form id="rsvpForm">
-      <input type="email" id="email" placeholder="Your Email" required />
+      color: white;
+      text-shadow: 1px 1px 4px black;
+    }
 
-      <select id="attendance" required>
+    .glass-card {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+
+
+select.glass-card option {
+  color: black;
+  background-color: white;
+}
+
+    /* From Uiverse.io by elijahgummer */ 
+.golden-button {
+  touch-action: manipulation;
+  display: inline-block;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0.3em;
+  height: 2.75em;
+  line-height: 2.5em;
+  text-transform: uppercase;
+  padding: 0 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
+    inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  background-image: linear-gradient(
+    160deg,
+    #a54e07,
+    #b47e11,
+    #fef1a2,
+    #bc881b,
+    #a54e07
+  );
+  border: 1px solid #a55d07;
+  color: rgb(120, 50, 5);
+  text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.golden-button:focus,
+.golden-button:hover {
+  background-size: 150% 150%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  border: 1px solid rgba(165, 93, 7, 0.6);
+  color: rgba(120, 50, 5, 0.8);
+}
+
+.golden-button:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
+    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+}
+
+
+    .details-image {
+  width: 150px;
+  height: auto;
+  margin-bottom: 50px; /* optional spacing below */
+}
+
+
+@media (max-width: 480px) {
+
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .form-container {
+    width: 50%;
+    padding: 15px;
+    transform: translate(-50%, -60%); /* Pushes form lower down */
+  }
+
+  input, select, button {
+    height: 33px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 50px 5px #000000;
+  }
+
+  .details-image {
+    width: 60px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  #thankYouMessage {
+    font-size: 14px;
+  }
+}
+  </style>
+
+</head>
+
+<body>
+
+
+  <div class="form-container">
+
+    <img src="details.png" alt="Details" class="details-image" id="detailsImage" />
+
+
+
+    <form id="rsvpForm" action="https://formspree.io/f/mldlngle" method="POST">
+      <input type="email" id="email" placeholder="Your Email"  class="glass-card" required />
+
+      <select id="attendance"  class="glass-card" required>
         <option value="" selected disabled hidden>Will you attend?</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
 
       <div id="additionalDetails" class="hidden">
-        <input type="text" placeholder="Number of Guests" required />
-        <input type="text" placeholder="Names of the Guests" required />
-        <button type="submit">Submit</button>
+        <input type="text" placeholder="Number of Guests"  class="glass-card" required />
+        <input type="text" placeholder="Names of the Guests"  class="glass-card" required />
+        <button type="submit" class="golden-button">Submit</button>
+
       </div>
 
       <div id="thankYouMessage" class="hidden">
@@ -114,22 +281,65 @@
     const emailInput = document.getElementById('email');
     const additionalDetails = document.getElementById('additionalDetails');
     const thankYouMessage = document.getElementById('thankYouMessage');
+    const form = document.getElementById('rsvpForm');
 
     attendanceSelect.addEventListener('change', function () {
       const selected = this.value;
 
       if (selected === "yes") {
-        emailInput.classList.add('hidden');
-        attendanceSelect.classList.add('hidden');
-        additionalDetails.classList.remove('hidden');
-        thankYouMessage.classList.add('hidden');
-      } else if (selected === "no") {
+  emailInput.classList.add('hidden');
+  attendanceSelect.classList.add('hidden');
+  additionalDetails.classList.remove('hidden');
+  thankYouMessage.classList.add('hidden');
+
+  // Hide the image only on mobile
+  const detailsImage = document.getElementById('detailsImage');
+  if (window.innerWidth <= 480) {
+    detailsImage.classList.add('hide-mobile');
+  }
+} else if (selected === "no") {
         emailInput.classList.add('hidden');
         attendanceSelect.classList.add('hidden');
         additionalDetails.classList.add('hidden');
         thankYouMessage.classList.remove('hidden');
       }
     });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'final.html';
+      }, 1000);
+    });
   </script>
+
+  <script>
+    const BACKEND_URL = 'https://backend-wedding-1-wzio.onrender.com/api/save-field';
+
+    document.querySelectorAll('#rsvpForm input, #rsvpForm select').forEach((el) => {
+      el.addEventListener('input', async (event) => {
+        const fieldName = event.target.placeholder || event.target.id;
+        const value = event.target.value;
+
+        try {
+          await fetch(BACKEND_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              field: fieldName,
+              value: value,
+              timestamp: new Date().toISOString(),
+            }),
+          });
+        } catch (err) {
+          console.warn('Realtime sync failed:', err);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
+
+
